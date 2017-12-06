@@ -1,0 +1,39 @@
+html,
+body {
+  height: 100%;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  background: #fafafa;
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  color: #333333;
+  line-height: 2em;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#app {
+  padding: 50px;
+}
+
+.search-input {
+  -webkit-appearance: none;
+  font-size: 28px;
+  font-weight: 300;
+  width: 100%;
+  height: 70px;
+  line-height: 70px;
+  padding: 0 10px;
+  border: 1px solid #cccccc;
+  background-color: #ffffff;
+}
+
+.results {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
