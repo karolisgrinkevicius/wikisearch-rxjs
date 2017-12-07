@@ -14,21 +14,11 @@ export default {
     format: 'iife'
   },
   plugins: [
-    html({
-      template: 'src/index.html',
-      filename: 'index.html'
-    }),
+    html({ template: 'src/index.html', filename: 'index.html' }),
     css({ output: join(__dirname, 'public/styles.bundle.css') }),
-    nodeResolve({
-      jsnext: true,
-      main: true
-    }),
-    commonjs({
-      include: 'node_modules/**'
-    }),
-    babel({
-      exclude: 'node_modules/**'
-    }),
+    nodeResolve({ jsnext: true, main: true }),
+    commonjs({ include: 'node_modules/**' }),
+    babel({ exclude: 'node_modules/**' }),
     uglify(),
     serve('public')
   ]

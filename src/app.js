@@ -11,10 +11,6 @@ import 'rxjs/add/operator/switchMap';
 import cash from 'cash-dom';
 import './style.css';
 
-const options = {
-  minChars: 2
-};
-
 const elements = {
   input: cash('.search-input'),
   results: cash('.results')
@@ -23,21 +19,22 @@ const elements = {
 function init() {
   const searcher = Observable.fromEvent(elements.input, 'keyup')
     .map(event => event.target.value)
-    .filter(filterSearchByConditions)
+    .filter(query => {
+      const doSearch = query.length >= 2;
+      if (!doSearch) elements.results.empty();
+      return doSearch;
+    })
     .debounceTime(300)
     .throttleTime(300)
     .distinctUntilChanged()
     .switchMap(search);
 
   searcher.subscribe(response => {
+    const [ titles, summaries, links ] = response.slice(1);
     elements.results.empty();
-    if (response.suggestions.length) {
-      elements.results.append(
-        response.suggestions.map(item =>
-          cash('<li>').html(item._highlight.suggestion)
-        )
-      );
-    }
+    titles.forEach((title, i) => elements.results.append(
+      cash(getTemplate(title, links[i], summaries[i]))
+    ));
   });
 }
 
@@ -46,12 +43,8 @@ function search(term) {
     .then(response => response.json());
 }
 
-function filterSearchByConditions(query) {
-  console.log('query');
-
-  const condition = query.length >= options.minChars;
-  if (!condition) elements.results.empty();
-  return condition;
+function getTemplate(title, link, summary) {
+  return `<li><a href="${link}"><span>${title}</span><span>${summary}</span></a></li>`;
 }
 
 document.addEventListener('DOMContentLoaded', init);

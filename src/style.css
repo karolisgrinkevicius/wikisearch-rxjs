@@ -29,11 +29,44 @@ body {
   padding: 0 10px;
   border: 1px solid #cccccc;
   background-color: #ffffff;
+  border-radius: 3px;
 }
 
 .results {
   list-style: none;
-  margin: 0;
+  margin: 20px 0 0;
   padding: 0;
 }
 
+.results li {
+  margin: 10px 0;
+}
+
+.results li a {
+  display: block;
+  text-decoration: none;
+  color: #666666;
+  border: 1px solid #cccccc;
+  background-color: #ffffff;
+  padding: 10px;
+  border-radius: 3px;
+}
+
+.results li a:hover {
+  background-color: #fcfcfc;
+}
+
+.results li a span {
+  display: block;
+}
+
+.results li a span:first-child {
+  padding-bottom: 5px;
+  font-weight: 700;
+  color: #333333;
+}
+
+.results li a span:not(:first-child) {
+  font-size: 12px;
+  font-style: italic;
+}
